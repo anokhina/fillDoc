@@ -1,0 +1,20 @@
+[
+{
+  "name": "${name}",
+  "textname": "Name",
+  "comment": "Any name",
+  "type": "text"
+}
+,{
+  "name": "${fruits}",
+  "textname": "Fruits",
+  "comment": "Any fruits",
+  "type": "text"
+}
+,{
+  "name": "${vegetables}",
+  "textname": "Vegetables",
+  "comment": "Any vegetables",
+  "type": "text"
+}
+]
