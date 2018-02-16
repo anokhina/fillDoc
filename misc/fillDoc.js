@@ -479,13 +479,15 @@ function printForm(form) {
     
     svgIdArr.forEach(function (svgId) {
         var output = document.getElementById( svgId );
-        output.classList.toggle(hideClassName);
+        output.parentNode.classList.toggle(hideClassName);
         replaceInTemplate(output, obj);
+        toPdf(output, obj);
     });
     
     var controls = document.getElementById("controls");
     controls.parentNode.removeChild(controls);
 }
+function toPdf(svg, objForm) {}
 
 function makeForm() {
 
