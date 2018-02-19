@@ -123,7 +123,49 @@ var jarrConfig = [
   "comment": "",
   "type": "text"
 }
+,{
+  "class": "prog",
+  "name": "${costyr}",
+  "textname": "Полная стоимость образовательных услуг за весь период обучения (рублей)",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "prog",
+  "name": "${costyrp}",
+  "textname": "Полная стоимость образовательных услуг за весь период обучения (рублей)[прописью]",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "prog",
+  "name": "${costyk}",
+  "textname": "Полная стоимость образовательных услуг за весь период обучения (копеек)",
+  "comment": "",
+  "type": "text"
+}
  
+,{
+  "class": "prog",
+  "name": "${costmr}",
+  "textname": "Ежемесячная оплата (рублей)",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "prog",
+  "name": "${costmrp}",
+  "textname": "Ежемесячная оплата (рублей)[прописью]",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "prog",
+  "name": "${costmk}",
+  "textname": "Ежемесячная оплата (копеек)",
+  "comment": "",
+  "type": "text"
+}
 //////////////////////////////////////Parent
 ,{
   "class": "parent",
@@ -190,6 +232,13 @@ var jarrConfig = [
 }
 ,{
   "class": "parent",
+  "name": "${rodW}",
+  "textname": "Сведения о родителях. Паспорт. Кем выдан",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "parent",
   "name": "${rodMob}",
   "textname": "Моб.тел. родит.",
   "comment": "",
@@ -207,6 +256,13 @@ var jarrConfig = [
   "class": "child",
   "name": "${fio}",
   "textname": "ФИО ребёнка",
+  "comment": "",
+  "type": "text"
+}
+,{
+  "class": "child",
+  "name": "${fioS}",
+  "textname": "Фамилия и инициалы ребёнка ",
   "comment": "",
   "type": "text"
 }
@@ -315,6 +371,14 @@ var jarrConfig = [
   "comment": "",
   "type": "text"
 }
+,{
+  "class": "parent",
+  "name": "${takeoff}",
+  "textname": "После окончания занятий Обучающийся уходит в сопровождении ФИО, телефон",
+  "comment": "",
+  "type": "text"
+}
+
 ];
 
 /*
@@ -340,6 +404,7 @@ var jobj = {
 "${addr1}":"г.Москва, ул. Заречная, д.1, кв.2",
 
 "${fio}":"Иванов Олег Михайлович",
+"${fioS}":"Иванов О.М.",
 "${dataRod}":"01.02.2008",
 "${fioR}":"Иванова Олега Михайловича",
 "${fioD}":"Иванова Олега Михайловича",
@@ -350,7 +415,8 @@ var jobj = {
 "${adrReg1}":"г. Москва, ул. Солнечная, д.1, кв.2",
 "${adrF}":"г. Москва, ул. Заречная, д.1, кв.2",
 "${sch}":"1945",
-"${schKl}":"4 \"А\""
+"${schKl}":"4 \"А\"",
+"${takeoff}": "самостоятельно"
 }
 
 function fillTable(jarrConfig) {
@@ -476,12 +542,18 @@ function saveForm(form) {
 
 function printForm(form) {
     var obj = saveForm(form);
+    var els = document.getElementsByClassName(hideClassName);
+    for (var i = 0; i < els.length; i++) {
+        els[i].classList.toggle(hideClassName);
+    }
     
     svgIdArr.forEach(function (svgId) {
         var output = document.getElementById( svgId );
-        output.parentNode.classList.toggle(hideClassName);
-        replaceInTemplate(output, obj);
-        toPdf(output, obj);
+        if (output != null) {
+            //output.parentNode.classList.toggle(hideClassName);
+            replaceInTemplate(output, obj);
+            toPdf(output, obj);
+        }
     });
     
     var controls = document.getElementById("controls");
