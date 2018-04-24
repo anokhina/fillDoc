@@ -131,6 +131,7 @@ public class Main {
         String filein = "misc/test.odt";
         String fileout = "misc/test1.odt";
         String fileoutform = "misc/form.html";
+        // for win word docx word/document.xml
         String contentName = "content.xml";
         
         JSONArray jarrConfig = new JSONArray(istream2str(2048, new FileInputStream(fileConfig), "UTF-8", true));
